@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.seeker.treasure.model.player";
+option java_outer_classname = "Statistics";
+
+message CharacterStatistics {
+  int32 hp = 2;
+  int32 mana = 3;
+  int32 strength = 4;
+  int32 dexterity = 5;
+  int32 endurance = 6;
+  int32 intelligence = 7;
+  int32 charisma = 8;
+}
+
+message Experience {
+  int32 level = 1;
+  int64 experience = 2;
+}

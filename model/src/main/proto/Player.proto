@@ -1,0 +1,20 @@
+syntax = "proto3";
+import "Statistics.proto";
+
+option java_package = "com.seeker.treasure.model.player";
+option java_outer_classname = "Player";
+
+message PlayerAvatar {
+  int32 id = 1;
+  string name = 2;
+  Statistics statistics = 3;
+  Experience experience = 4;
+  PlayerClass playerClass = 5;
+}
+
+enum PlayerClass {
+  WARRIOR = 0;
+  HUNTER = 1;
+  MAGE = 2;
+}
+
