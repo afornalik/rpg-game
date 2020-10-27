@@ -17,4 +17,3 @@ enum PlayerClass {
   HUNTER = 1;
   MAGE = 2;
 }
-

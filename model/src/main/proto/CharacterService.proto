@@ -1,0 +1,12 @@
+syntax = "proto3";
+import "Character.proto";
+
+option java_package = "com.seeker.treasure.service.character";
+option java_outer_classname = "CharacterService";
+
+service CharacterServiceAPI {
+  rpc getCharacterInformation (PlayerAvatar) returns (PlayerAvatar) {}
+  rpc createCharacter (PlayerAvatar) returns (PlayerAvatar) {}
+  rpc removeCharacter (PlayerAvatar) returns (PlayerAvatar) {}
+  rpc levelUpCharacter (PlayerAvatar) returns (PlayerAvatar) {}
+}
