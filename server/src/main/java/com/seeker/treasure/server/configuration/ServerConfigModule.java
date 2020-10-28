@@ -7,7 +7,8 @@ import com.seeker.treasure.server.runner.DefaultServiceProvider;
 import com.seeker.treasure.server.runner.GrpcServerPort;
 import com.seeker.treasure.server.runner.Server;
 import com.seeker.treasure.service.Service;
-import com.seeker.treasure.service.character.BasicCharacterService;
+import com.seeker.treasure.service.character.CharacterServiceGrpc;
+import com.seeker.treasure.service.character.CharacterServicesGrpc;
 import io.grpc.ServerServiceDefinition;
 
 public class ServerConfigModule extends AbstractModule {
@@ -16,7 +17,8 @@ public class ServerConfigModule extends AbstractModule {
   protected void configure() {
     bind(Server.class).to(DefaultServerConfig.class);
     bind(Integer.class).annotatedWith(GrpcServerPort.class).toInstance(8090);
-    bind(Service.class).to(BasicCharacterService.class);
+    bind(Service.class).to(CharacterServiceGrpc.class);
+    bind(CharacterServicesGrpc.CharacterServicesImplBase.class).to(CharacterServiceGrpc.class);
   }
 
   @Provides
@@ -24,4 +26,4 @@ public class ServerConfigModule extends AbstractModule {
   public  ServerServiceDefinition getCharacterService(Service basicCharacterService) {
     return ServerServiceDefinition.builder(basicCharacterService.getDescriptor()).build();
   }
-  }
+}

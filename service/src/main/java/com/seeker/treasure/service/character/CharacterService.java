@@ -1,9 +1,8 @@
 package com.seeker.treasure.service.character;
 
 import com.seeker.treasure.model.player.Character;
-import com.seeker.treasure.service.Service;
 
-public interface CharacterService extends Service {
+public interface CharacterService  {
 
   Character.PlayerAvatar getCharacterDetailsById(int id);
 

@@ -9,19 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>server</artifactId>
-    <version>0.1</version>
-
+    <artifactId>client</artifactId>
     <dependencies>
         <dependency>
             <groupId>pl.treasure-seeker</groupId>
-            <artifactId>service</artifactId>
+            <artifactId>model</artifactId>
             <version>0.1</version>
         </dependency>
         <dependency>
             <groupId>pl.treasure-seeker</groupId>
-            <artifactId>service</artifactId>
+            <artifactId>server</artifactId>
             <version>0.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

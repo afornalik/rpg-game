@@ -1,6 +1,8 @@
 package com.seeker.treasure.server.runner;
 
 import com.google.inject.Inject;
+import com.seeker.treasure.service.character.BasicCharacterService;
+import com.seeker.treasure.service.character.CharacterServiceGrpc;
 import io.grpc.ServerBuilder;
 import io.grpc.ServerServiceDefinition;
 
@@ -21,7 +23,7 @@ public class DefaultServerConfig implements Server {
 
   @Override
   public void startGrpcServer() {
-    server = ServerBuilder.forPort(port).addService(serverServiceDefinition).build();
+    server = ServerBuilder.forPort(port).addService(new CharacterServiceGrpc(new BasicCharacterService())).build();
     tryToStartGrpcServer(server);
   }
 

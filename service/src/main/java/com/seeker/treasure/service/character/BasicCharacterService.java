@@ -1,9 +1,10 @@
 package com.seeker.treasure.service.character;
 
 import com.seeker.treasure.model.player.Character;
-import io.grpc.ServiceDescriptor;
 
 public class BasicCharacterService implements CharacterService{
+
+
 
   @Override
   public Character.PlayerAvatar getCharacterDetailsById(int id) {
@@ -25,8 +26,5 @@ public class BasicCharacterService implements CharacterService{
     return null;
   }
 
-  @Override
-  public ServiceDescriptor getDescriptor() {
-    return ServiceDescriptor.newBuilder("BasicCharacterService").build();
-  }
+
 }
