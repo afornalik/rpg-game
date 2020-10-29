@@ -5,7 +5,7 @@ option java_package = "com.seeker.treasure.model.player";
 option java_outer_classname = "Character";
 
 message PlayerAvatar {
-  int32 id = 1;
+  string id = 1;
   string name = 2;
   CharacterStatistics statistics = 3;
   Experience experience = 4;

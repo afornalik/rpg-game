@@ -1,10 +1,8 @@
 package com.seeker.treasure.server.runner;
 
 import com.google.inject.Inject;
-import com.seeker.treasure.service.character.BasicCharacterService;
-import com.seeker.treasure.service.character.CharacterServiceGrpc;
+import io.grpc.BindableService;
 import io.grpc.ServerBuilder;
-import io.grpc.ServerServiceDefinition;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -12,18 +10,18 @@ import java.util.concurrent.TimeUnit;
 public class DefaultServerConfig implements Server {
 
   private final int port;
-  private final ServerServiceDefinition serverServiceDefinition;
+  private final BindableService bindableService;
   private io.grpc.Server server;
 
   @Inject
-  public DefaultServerConfig(@GrpcServerPort int port,@DefaultServiceProvider ServerServiceDefinition serverServiceDefinition) {
+  public DefaultServerConfig(@GrpcServerPort int port,@DefaultServiceProvider BindableService bindableService) {
     this.port = port;
-    this.serverServiceDefinition = serverServiceDefinition;
+    this.bindableService = bindableService;
   }
 
   @Override
   public void startGrpcServer() {
-    server = ServerBuilder.forPort(port).addService(new CharacterServiceGrpc(new BasicCharacterService())).build();
+    server = ServerBuilder.forPort(port).addService(bindableService).build();
     tryToStartGrpcServer(server);
   }
 

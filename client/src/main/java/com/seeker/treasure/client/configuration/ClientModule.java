@@ -2,7 +2,7 @@ package com.seeker.treasure.client.configuration;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.seeker.treasure.client.request.CharacterRequest;
+import com.seeker.treasure.client.request.CharacterCreateRequest;
 import com.seeker.treasure.server.runner.GrpcServerPort;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -21,7 +21,7 @@ public class ClientModule extends AbstractModule {
   }
 
   @Provides
-  public CharacterRequest getCharacterRequest(ManagedChannel managedChannel) {
-    return new CharacterRequest(managedChannel);
+  public CharacterCreateRequest getCharacterRequest(ManagedChannel managedChannel) {
+    return new CharacterCreateRequest(managedChannel);
   }
 }

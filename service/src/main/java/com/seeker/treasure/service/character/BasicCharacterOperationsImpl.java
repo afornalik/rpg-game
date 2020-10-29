@@ -1,10 +1,17 @@
 package com.seeker.treasure.service.character;
 
+import com.google.inject.Inject;
 import com.seeker.treasure.model.player.Character;
+import com.seeker.treasure.service.character.factory.CharacterProvider;
 
-public class BasicCharacterService implements CharacterService{
+public class BasicCharacterOperationsImpl implements BasicCharacterOperations {
 
+  private final CharacterProvider characterProvider;
 
+  @Inject
+  public BasicCharacterOperationsImpl(CharacterProvider characterProvider) {
+    this.characterProvider = characterProvider;
+  }
 
   @Override
   public Character.PlayerAvatar getCharacterDetailsById(int id) {
@@ -13,7 +20,7 @@ public class BasicCharacterService implements CharacterService{
 
   @Override
   public Character.PlayerAvatar createCharacterWithType(Character.PlayerClass playerClass) {
-    return null;
+    return characterProvider.factory(playerClass);
   }
 
   @Override

@@ -6,10 +6,13 @@ import com.seeker.treasure.server.runner.DefaultServerConfig;
 import com.seeker.treasure.server.runner.DefaultServiceProvider;
 import com.seeker.treasure.server.runner.GrpcServerPort;
 import com.seeker.treasure.server.runner.Server;
-import com.seeker.treasure.service.Service;
-import com.seeker.treasure.service.character.CharacterServiceGrpc;
+import com.seeker.treasure.service.character.BasicCharacterOperationsImpl;
 import com.seeker.treasure.service.character.CharacterServicesGrpc;
-import io.grpc.ServerServiceDefinition;
+import com.seeker.treasure.service.character.factory.CharacterFactory;
+import com.seeker.treasure.service.character.factory.CharacterProvider;
+import com.seeker.treasure.service.character.BasicCharacterOperations;
+import com.seeker.treasure.service.character.CharacterServiceGrpc;
+import io.grpc.BindableService;
 
 public class ServerConfigModule extends AbstractModule {
 
@@ -17,13 +20,19 @@ public class ServerConfigModule extends AbstractModule {
   protected void configure() {
     bind(Server.class).to(DefaultServerConfig.class);
     bind(Integer.class).annotatedWith(GrpcServerPort.class).toInstance(8090);
-    bind(Service.class).to(CharacterServiceGrpc.class);
     bind(CharacterServicesGrpc.CharacterServicesImplBase.class).to(CharacterServiceGrpc.class);
+    bind(BasicCharacterOperations.class).to(BasicCharacterOperationsImpl.class);
+    //bind(CharacterProvider.class).to(CharacterProvider.class);
   }
 
   @Provides
   @DefaultServiceProvider
-  public  ServerServiceDefinition getCharacterService(Service basicCharacterService) {
-    return ServerServiceDefinition.builder(basicCharacterService.getDescriptor()).build();
+  public BindableService getCharacterService(BasicCharacterOperations basicBasicCharacterOperations) {
+    return new CharacterServiceGrpc(basicBasicCharacterOperations);
+  }
+
+  @Provides
+  public CharacterProvider characterProvider(CharacterFactory characterFactory){
+    return new CharacterProvider(characterFactory);
   }
 }

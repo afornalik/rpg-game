@@ -2,7 +2,7 @@ package com.seeker.treasure.service.character;
 
 import com.seeker.treasure.model.player.Character;
 
-public interface CharacterService  {
+public interface BasicCharacterOperations {
 
   Character.PlayerAvatar getCharacterDetailsById(int id);
 

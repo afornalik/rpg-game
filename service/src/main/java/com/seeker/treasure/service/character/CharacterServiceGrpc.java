@@ -2,17 +2,16 @@ package com.seeker.treasure.service.character;
 
 import com.google.inject.Inject;
 import com.seeker.treasure.model.player.Character;
-import com.seeker.treasure.service.Service;
-import io.grpc.ServiceDescriptor;
+import io.grpc.BindableService;
 import io.grpc.stub.StreamObserver;
 
-public class CharacterServiceGrpc extends CharacterServicesGrpc.CharacterServicesImplBase implements Service {
+public class CharacterServiceGrpc extends CharacterServicesGrpc.CharacterServicesImplBase implements BindableService {
 
-  private final CharacterService characterService;
+  private final BasicCharacterOperations basicCharacterOperations;
 
   @Inject
-  public CharacterServiceGrpc(CharacterService characterService) {
-    this.characterService = characterService;
+  public CharacterServiceGrpc(BasicCharacterOperations basicCharacterOperations) {
+    this.basicCharacterOperations = basicCharacterOperations;
   }
 
   @Override
@@ -23,7 +22,7 @@ public class CharacterServiceGrpc extends CharacterServicesGrpc.CharacterService
   @Override
   public void createCharacter(Character.PlayerAvatar request,
                               StreamObserver<Character.PlayerAvatar> responseObserver) {
-    responseObserver.onNext(characterService.createCharacterWithType(request.getPlayerClass()));
+    responseObserver.onNext(basicCharacterOperations.createCharacterWithType(request.getPlayerClass()));
     responseObserver.onCompleted();
   }
 
@@ -37,8 +36,4 @@ public class CharacterServiceGrpc extends CharacterServicesGrpc.CharacterService
     super.levelUpCharacter(request, responseObserver);
   }
 
-  @Override
-  public ServiceDescriptor getDescriptor() {
-    return ServiceDescriptor.newBuilder("BasicCharacterService").build();
-  }
 }
