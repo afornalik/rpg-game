@@ -13,7 +13,8 @@ message PlayerAvatar {
 }
 
 enum PlayerClass {
-  WARRIOR = 0;
-  HUNTER = 1;
-  MAGE = 2;
+  NO_DEFINED = 0;
+  WARRIOR = 1;
+  HUNTER = 2;
+  MAGE = 3;
 }

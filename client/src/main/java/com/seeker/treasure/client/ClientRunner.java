@@ -15,7 +15,7 @@ public class ClientRunner {
     System.out.println("======new========");
     System.out.println(request.createCharacterWithClassAndName(Character.PlayerClass.HUNTER,"Czesław"));
     System.out.println("======new========");
-    System.out.println(request.createCharacterWithClass(Character.PlayerClass.WARRIOR));
+    System.out.println(request.createCharacterWithClass(Character.PlayerClass.WARRIOR).getPlayerClass());
     System.out.println("======new========");
     System.out.println(request.createCharacterWithClass(Character.PlayerClass.WARRIOR));
     System.out.println("======new========");

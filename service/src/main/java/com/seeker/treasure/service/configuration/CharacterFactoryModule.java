@@ -4,13 +4,13 @@ import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.seeker.treasure.service.character.factory.BasicHunter;
 import com.seeker.treasure.service.character.factory.BasicMage;
-import com.seeker.treasure.service.character.factory.BasicUnrecognized;
+import com.seeker.treasure.service.character.factory.BasicNoDefined;
 import com.seeker.treasure.service.character.factory.BasicWarrior;
 import com.seeker.treasure.service.character.factory.CharacterFactory;
 import com.seeker.treasure.service.character.factory.Hunter;
 import com.seeker.treasure.service.character.factory.Mage;
 import com.seeker.treasure.service.character.factory.PlayerCharacter;
-import com.seeker.treasure.service.character.factory.Unrecognized;
+import com.seeker.treasure.service.character.factory.NoDefined;
 import com.seeker.treasure.service.character.factory.Warrior;
 
 public class CharacterFactoryModule extends AbstractModule {
@@ -21,7 +21,7 @@ public class CharacterFactoryModule extends AbstractModule {
       .implement(PlayerCharacter.class, Warrior.class, BasicWarrior.class)
       .implement(PlayerCharacter.class, Hunter.class, BasicHunter.class)
       .implement(PlayerCharacter.class, Mage.class, BasicMage.class)
-      .implement(PlayerCharacter.class, Unrecognized.class, BasicUnrecognized.class)
+      .implement(PlayerCharacter.class, NoDefined.class, BasicNoDefined.class)
       .build(CharacterFactory.class));
   }
 

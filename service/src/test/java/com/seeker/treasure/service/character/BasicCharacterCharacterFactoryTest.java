@@ -35,7 +35,7 @@ class BasicCharacterCharacterFactoryTest {
 
     softAssertions.assertThat(result).isNotNull();
 
-    softAssertions.assertThat(result.getId()).isEqualTo(113);
+    softAssertions.assertThat(result.getId().length()).isEqualTo(36);
     softAssertions.assertThat(result.getName()).isEqualTo(CHARACTER_NAME);
     softAssertions.assertThat(result.getPlayerClass()).isEqualTo(Character.PlayerClass.MAGE);
 
@@ -68,7 +68,7 @@ class BasicCharacterCharacterFactoryTest {
 
     softAssertions.assertThat(result).isNotNull();
 
-    softAssertions.assertThat(result.getId()).isEqualTo(111);
+    softAssertions.assertThat(result.getId().length()).isEqualTo(36);
     softAssertions.assertThat(result.getName()).isEqualTo(CHARACTER_NAME);
     softAssertions.assertThat(result.getPlayerClass()).isEqualTo(Character.PlayerClass.WARRIOR);
 
@@ -101,7 +101,7 @@ class BasicCharacterCharacterFactoryTest {
 
     softAssertions.assertThat(result).isNotNull();
 
-    softAssertions.assertThat(result.getId()).isEqualTo(112);
+    softAssertions.assertThat(result.getId().length()).isEqualTo(36);
     softAssertions.assertThat(result.getName()).isEqualTo(CHARACTER_NAME);
     softAssertions.assertThat(result.getPlayerClass()).isEqualTo(Character.PlayerClass.HUNTER);
 
@@ -120,7 +120,7 @@ class BasicCharacterCharacterFactoryTest {
   }
 
   @ParameterizedTest
-  @ValueSource(ints = {-1,0,1,2})
+  @ValueSource(ints = {0,1,2,3})
   public void shouldCreateCharacterWithWarningIfNameIsEmpty(int playerClass) {
     //given
     characterProvider = injector.getInstance(CharacterProvider.class);
@@ -149,7 +149,7 @@ class BasicCharacterCharacterFactoryTest {
     characterProvider = injector.getInstance(CharacterProvider.class);
     Character.PlayerAvatar playerAvatar =
       Character.PlayerAvatar.newBuilder()
-        .setPlayerClassValue(-1)
+        .setPlayerClassValue(0)
         .setName(CHARACTER_NAME)
         .build();
     //when
@@ -159,9 +159,9 @@ class BasicCharacterCharacterFactoryTest {
 
     softAssertions.assertThat(result).isNotNull();
 
-    softAssertions.assertThat(result.getId()).isEqualTo(0);
+    softAssertions.assertThat(result.getId().length()).isEqualTo(36);
     softAssertions.assertThat(result.getName()).isEqualTo(CHARACTER_NAME);
-    softAssertions.assertThat(result.getPlayerClass().equals(Character.PlayerClass.UNRECOGNIZED));
+    softAssertions.assertThat(result.getPlayerClass().equals(Character.PlayerClass.NO_DEFINED));
     softAssertions.assertThat(result.getExperience().getExperience()).isEqualTo(0);
     softAssertions.assertThat(result.getExperience().getLevel()).isEqualTo(1);
 

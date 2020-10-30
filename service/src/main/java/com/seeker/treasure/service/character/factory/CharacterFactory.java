@@ -11,6 +11,6 @@ public interface CharacterFactory {
   @Hunter
   PlayerCharacter createHunter(String name);
 
-  @Unrecognized
+  @NoDefined
   PlayerCharacter createUnrecognized(String name);
 }

@@ -5,6 +5,8 @@ import com.google.inject.assistedinject.Assisted;
 import com.seeker.treasure.model.player.Character;
 import com.seeker.treasure.model.player.Statistics;
 
+import java.util.UUID;
+
 public class BasicMage extends PlayerCharacter {
   @Inject
   public BasicMage(@Assisted String name) {
@@ -14,7 +16,7 @@ public class BasicMage extends PlayerCharacter {
   @Override
   public Character.PlayerAvatar getPlayerAvatar() {
     return Character.PlayerAvatar.newBuilder()
-      .setId(113)
+      .setId(UUID.randomUUID().toString())
       .setPlayerClass(Character.PlayerClass.MAGE)
       .setExperience(
         Statistics.Experience.newBuilder()

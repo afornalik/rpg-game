@@ -20,7 +20,7 @@ public class CharacterProvider {
         return characterFactory.createWarrior(playerAvatar.getName()).getPlayerAvatar();
       case MAGE:
         return characterFactory.createMage(playerAvatar.getName()).getPlayerAvatar();
-      case UNRECOGNIZED:
+      case NO_DEFINED:
         return characterFactory.createUnrecognized(playerAvatar.getName()).getPlayerAvatar();
     }
     return Character.PlayerAvatar.newBuilder().build();

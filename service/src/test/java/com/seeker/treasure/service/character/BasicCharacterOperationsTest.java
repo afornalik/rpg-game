@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.UUID;
+
 import static org.mockito.Mockito.when;
 
 class BasicCharacterOperationsTest {
@@ -26,12 +28,12 @@ class BasicCharacterOperationsTest {
     //then
     Assertions.assertNotNull(result);
     Assertions.assertEquals(hunter.getPlayerClass(),result.getPlayerClass());
-    Assertions.assertEquals(112,result.getId());
+    Assertions.assertEquals(result.getId().length(),36);
   }
 
   private Character.PlayerAvatar mockedHunter() {
     return Character.PlayerAvatar.newBuilder()
-      .setId(112)
+      .setId(UUID.randomUUID().toString())
       .setPlayerClass(Character.PlayerClass.HUNTER)
       .setExperience(
         Statistics.Experience.newBuilder()

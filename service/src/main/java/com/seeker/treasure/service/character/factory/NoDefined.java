@@ -9,5 +9,5 @@ import javax.inject.Qualifier;
 @Qualifier
 @Target({ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Unrecognized {
+public @interface NoDefined {
 }
