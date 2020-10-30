@@ -5,32 +5,20 @@ import com.google.inject.assistedinject.Assisted;
 import com.seeker.treasure.model.player.Character;
 import com.seeker.treasure.model.player.Statistics;
 
-public class BasicHunter extends PlayerCharacter {
+public class BasicUnrecognized extends PlayerCharacter{
   @Inject
-  public BasicHunter(@Assisted String name) {
+  protected BasicUnrecognized(@Assisted String name) {
     super(name);
   }
 
   @Override
   public Character.PlayerAvatar getPlayerAvatar() {
     return Character.PlayerAvatar.newBuilder()
-      .setId(112)
-      .setPlayerClass(Character.PlayerClass.HUNTER)
+      .setPlayerClassValue(-1)
+      .setName(super.getNameOrWarning())
       .setExperience(
         Statistics.Experience.newBuilder()
-          .setExperience(0)
           .setLevel(1)
-          .build())
-      .setName(super.getNameOrWarning())
-      .setStatistics(
-        Statistics.CharacterStatistics.newBuilder()
-          .setCharisma(5)
-          .setDexterity(8)
-          .setEndurance(6)
-          .setIntelligence(3)
-          .setStrength(6)
-          .setHp(14)
-          .setMana(8)
           .build())
       .build();
   }

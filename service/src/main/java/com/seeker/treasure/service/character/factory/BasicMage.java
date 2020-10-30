@@ -1,9 +1,16 @@
 package com.seeker.treasure.service.character.factory;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 import com.seeker.treasure.model.player.Character;
 import com.seeker.treasure.model.player.Statistics;
 
 public class BasicMage extends PlayerCharacter {
+  @Inject
+  public BasicMage(@Assisted String name) {
+    super(name);
+  }
+
   @Override
   public Character.PlayerAvatar getPlayerAvatar() {
     return Character.PlayerAvatar.newBuilder()
@@ -14,7 +21,7 @@ public class BasicMage extends PlayerCharacter {
           .setExperience(0)
           .setLevel(1)
           .build())
-      .setName("Maaaaaaaaage")
+      .setName(super.getNameOrWarning())
       .setStatistics(
         Statistics.CharacterStatistics.newBuilder()
           .setCharisma(4)

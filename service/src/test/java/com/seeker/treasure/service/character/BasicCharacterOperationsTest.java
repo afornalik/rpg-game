@@ -12,7 +12,9 @@ import static org.mockito.Mockito.when;
 class BasicCharacterOperationsTest {
 
   private CharacterProvider mockedCharacterProvider = Mockito.mock(CharacterProvider.class);
-  private Character.PlayerClass hunter = Character.PlayerClass.HUNTER;
+  private Character.PlayerAvatar hunter = Character.PlayerAvatar.newBuilder()
+    .setPlayerClass(Character.PlayerClass.HUNTER)
+    .build();
 
   @Test
   public void shouldServiceCreateHunter() {
@@ -20,10 +22,10 @@ class BasicCharacterOperationsTest {
     BasicCharacterOperationsImpl basicCharacterOperationsImpl = new BasicCharacterOperationsImpl(mockedCharacterProvider);
     when(mockedCharacterProvider.factory(hunter)).thenReturn(mockedHunter());
     //when
-    Character.PlayerAvatar result = basicCharacterOperationsImpl.createCharacterWithType(hunter);
+    Character.PlayerAvatar result = basicCharacterOperationsImpl.createCharacterBaseOn(hunter);
     //then
     Assertions.assertNotNull(result);
-    Assertions.assertEquals(hunter,result.getPlayerClass());
+    Assertions.assertEquals(hunter.getPlayerClass(),result.getPlayerClass());
     Assertions.assertEquals(112,result.getId());
   }
 

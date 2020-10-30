@@ -19,8 +19,8 @@ public class BasicCharacterOperationsImpl implements BasicCharacterOperations {
   }
 
   @Override
-  public Character.PlayerAvatar createCharacterWithType(Character.PlayerClass playerClass) {
-    return characterProvider.factory(playerClass);
+  public Character.PlayerAvatar createCharacterBaseOn(Character.PlayerAvatar playerAvatar) {
+    return characterProvider.factory(playerAvatar);
   }
 
   @Override

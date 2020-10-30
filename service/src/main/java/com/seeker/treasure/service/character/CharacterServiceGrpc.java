@@ -22,7 +22,7 @@ public class CharacterServiceGrpc extends CharacterServicesGrpc.CharacterService
   @Override
   public void createCharacter(Character.PlayerAvatar request,
                               StreamObserver<Character.PlayerAvatar> responseObserver) {
-    responseObserver.onNext(basicCharacterOperations.createCharacterWithType(request.getPlayerClass()));
+    responseObserver.onNext(basicCharacterOperations.createCharacterBaseOn(request));
     responseObserver.onCompleted();
   }
 

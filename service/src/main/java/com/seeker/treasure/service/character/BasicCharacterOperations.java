@@ -6,7 +6,7 @@ public interface BasicCharacterOperations {
 
   Character.PlayerAvatar getCharacterDetailsById(int id);
 
-  Character.PlayerAvatar createCharacterWithType(Character.PlayerClass playerClass);
+  Character.PlayerAvatar createCharacterBaseOn(Character.PlayerAvatar playerAvatar);
 
   boolean removeCharacterById(int id);
 

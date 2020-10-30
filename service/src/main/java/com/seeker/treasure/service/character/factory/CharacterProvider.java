@@ -12,16 +12,17 @@ public class CharacterProvider {
     this.characterFactory = characterFactory;
   }
 
-  public Character.PlayerAvatar factory(Character.PlayerClass playerClass) {
-    switch (playerClass) {
+  public Character.PlayerAvatar factory(Character.PlayerAvatar playerAvatar) {
+    switch (playerAvatar.getPlayerClass()) {
       case HUNTER:
-        return characterFactory.createHunter().getPlayerAvatar();
+        return characterFactory.createHunter(playerAvatar.getName()).getPlayerAvatar();
       case WARRIOR:
-        return characterFactory.createWarrior().getPlayerAvatar();
+        return characterFactory.createWarrior(playerAvatar.getName()).getPlayerAvatar();
       case MAGE:
-        return characterFactory.createMage().getPlayerAvatar();
-      default:
-        return Character.PlayerAvatar.newBuilder().build();
+        return characterFactory.createMage(playerAvatar.getName()).getPlayerAvatar();
+      case UNRECOGNIZED:
+        return characterFactory.createUnrecognized(playerAvatar.getName()).getPlayerAvatar();
     }
+    return Character.PlayerAvatar.newBuilder().build();
   }
 }

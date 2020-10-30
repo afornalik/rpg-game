@@ -20,9 +20,6 @@ public class ServerConfigModule extends AbstractModule {
   protected void configure() {
     bind(Server.class).to(DefaultServerConfig.class);
     bind(Integer.class).annotatedWith(GrpcServerPort.class).toInstance(8090);
-    bind(CharacterServicesGrpc.CharacterServicesImplBase.class).to(CharacterServiceGrpc.class);
-    bind(BasicCharacterOperations.class).to(BasicCharacterOperationsImpl.class);
-    //bind(CharacterProvider.class).to(CharacterProvider.class);
   }
 
   @Provides
@@ -31,8 +28,4 @@ public class ServerConfigModule extends AbstractModule {
     return new CharacterServiceGrpc(basicBasicCharacterOperations);
   }
 
-  @Provides
-  public CharacterProvider characterProvider(CharacterFactory characterFactory){
-    return new CharacterProvider(characterFactory);
-  }
 }
