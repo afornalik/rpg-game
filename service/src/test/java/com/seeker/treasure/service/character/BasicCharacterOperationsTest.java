@@ -3,6 +3,7 @@ package com.seeker.treasure.service.character;
 import com.seeker.treasure.model.player.Character;
 import com.seeker.treasure.model.player.Statistics;
 import com.seeker.treasure.service.character.factory.CharacterProvider;
+import com.seeker.treasure.service.character.persistence.Persistence;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,6 +15,8 @@ import static org.mockito.Mockito.when;
 class BasicCharacterOperationsTest {
 
   private CharacterProvider mockedCharacterProvider = Mockito.mock(CharacterProvider.class);
+  private Persistence<Character.PlayerAvatar> playerAvatarPersistence =
+     Mockito.mock(Persistence.class);
   private Character.PlayerAvatar hunter = Character.PlayerAvatar.newBuilder()
     .setPlayerClass(Character.PlayerClass.HUNTER)
     .build();
@@ -21,7 +24,7 @@ class BasicCharacterOperationsTest {
   @Test
   public void shouldServiceCreateHunter() {
     //given
-    BasicCharacterOperationsImpl basicCharacterOperationsImpl = new BasicCharacterOperationsImpl(mockedCharacterProvider);
+    BasicCharacterOperationsImpl basicCharacterOperationsImpl = new BasicCharacterOperationsImpl(mockedCharacterProvider, playerAvatarPersistence);
     when(mockedCharacterProvider.factory(hunter)).thenReturn(mockedHunter());
     //when
     Character.PlayerAvatar result = basicCharacterOperationsImpl.createCharacterBaseOn(hunter);

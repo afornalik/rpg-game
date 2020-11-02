@@ -1,11 +1,14 @@
 syntax = "proto3";
 import "Character.proto";
+import "Response.proto";
 
 option java_package = "com.seeker.treasure.service.character";
 
 service CharacterServices {
   rpc getCharacterInformation (PlayerAvatar) returns (PlayerAvatar) {}
   rpc createCharacter (PlayerAvatar) returns (PlayerAvatar) {}
-  rpc removeCharacter (PlayerAvatar) returns (PlayerAvatar) {}
+  rpc removeCharacter (PlayerAvatar) returns (BooleanResponse) {}
   rpc levelUpCharacter (PlayerAvatar) returns (PlayerAvatar) {}
+  rpc saveCharacter (PlayerAvatar) returns (BooleanResponse) {}
+
 }

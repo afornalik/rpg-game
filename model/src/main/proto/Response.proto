@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "com.seeker.treasure.model.response";
+option java_outer_classname = "Response";
+
+message BooleanResponse {
+  bool isSuccess = 1;
+  string errorMessage = 2;
+  int32 errorCode = 3;
+}
