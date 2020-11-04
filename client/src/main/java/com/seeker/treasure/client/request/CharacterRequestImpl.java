@@ -3,16 +3,18 @@ package com.seeker.treasure.client.request;
 import com.google.inject.Inject;
 import com.seeker.treasure.model.player.Character;
 import com.seeker.treasure.model.response.Response;
+import com.seeker.treasure.service.character.CharacterService;
 import com.seeker.treasure.service.character.CharacterServicesGrpc;
 import io.grpc.ManagedChannel;
+import io.grpc.stub.AbstractBlockingStub;
 
 public class CharacterRequestImpl implements CharacterRequest<Character.PlayerAvatar, Response.BooleanResponse> {
 
   private final CharacterServicesGrpc.CharacterServicesBlockingStub blockingStub;
 
   @Inject
-  public CharacterRequestImpl(ManagedChannel channel) {
-    blockingStub = CharacterServicesGrpc.newBlockingStub(channel);
+  public CharacterRequestImpl(CharacterServicesGrpc.CharacterServicesBlockingStub stub) {
+    blockingStub = stub;
   }
 
   @Override
